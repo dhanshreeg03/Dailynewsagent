@@ -4,6 +4,20 @@ An AI-powered web research agent that automatically finds, analyzes, and summari
 
 ---
 
+## 📸 Output & Screenshots
+
+### 1. Web Application Search Interface
+Searching for real-time news topics (e.g. *Saudi Arabia*):
+
+![Daily News Agent Search Interface](assets/app_search.png)
+
+### 2. Generated News Summaries & Source Cards
+Structured AI-curated news cards complete with source name, publication date, short summary, and direct article link:
+
+![Daily News Agent Results](assets/app_results.png)
+
+---
+
 ## ✨ Features
 
 - 🔎 **Real-time Web Search**: Uses SerperDevTool to query current news from across the web.
@@ -17,12 +31,16 @@ An AI-powered web research agent that automatically finds, analyzes, and summari
 
 ```text
 DailyNewsAgent/
-├── app.py              # Streamlit Web UI application
-├── news_agents.py      # CrewAI agent, search tool, and task workflow definition
-├── test_backend.py     # CLI script to test backend logic independently
-├── .env.example        # Environment variable template
-├── .gitignore          # Git ignore rules (protects API keys)
-└── README.md           # Project documentation
+├── assets/
+│   ├── app_search.png   # Screenshot of search input interface
+│   └── app_results.png  # Screenshot of output news cards
+├── app.py               # Streamlit Web UI application
+├── news_agents.py       # CrewAI agent, search tool, and task workflow definition
+├── test_backend.py      # CLI script to test backend logic independently
+├── requirements.txt     # Python package dependencies
+├── .env.example         # Environment variable template
+├── .gitignore           # Git ignore rules (protects API keys)
+└── README.md            # Project documentation
 ```
 
 ---
@@ -38,10 +56,10 @@ cd Dailynewsagent
 
 ### 2. Install Dependencies
 
-Ensure Python 3.10+ is installed, then install the required packages:
+Ensure Python 3.10+ is installed, then install the packages from `requirements.txt`:
 
 ```bash
-pip install streamlit crewai crewai-tools python-dotenv
+pip install -r requirements.txt
 ```
 
 ### 3. Configure Environment Variables
