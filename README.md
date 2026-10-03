@@ -9,7 +9,7 @@ An AI-powered web research agent that automatically finds, analyzes, and summari
 ### 1. Web Application Search Interface
 Searching for real-time news topics (e.g. *Saudi Arabia*):
 
-![Daily News Agent Search Interface](assets/app_search.png)
+![Daily News Agent Search Interface](assets/search.png)
 
 ### 2. Generated News Summaries & Source Cards
 Structured AI-curated news cards complete with source name, publication date, short summary, and direct article link:
