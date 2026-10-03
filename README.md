@@ -9,16 +9,18 @@ An AI-powered web research agent that automatically finds, analyzes, and summari
 ### 1. Web Application Search Interface
 Searching for real-time news topics (e.g. *Saudi Arabia*):
 
-![Daily News Agent Search Interface](assets/search.png)
+![Daily News Agent Search Interface](assets/app_search.png)
 
 ### 2. Generated News Summaries & Source Cards
 Structured AI-curated news cards complete with source name, publication date, short summary, and direct article link:
 
-![Daily News Agent Results](assets/news.png)
+![Daily News Agent Results](assets/app_results.png)
 
 ---
 
 ## 🔄 System Architecture & Workflow
+
+For full workflow specifications, see **[WORKFLOW.md](WORKFLOW.md)**.
 
 ```mermaid
 flowchart TD
@@ -36,28 +38,6 @@ flowchart TD
     D -->|8. Returns Formatted Raw Markdown| B
     B -->|9. Regex Extraction & Article Parsing| A
     A -->|10. Renders News Cards & Direct Links| G[📺 Streamlit UI Display]
-```
-
-### Detailed Sequence Diagram
-
-```mermaid
-sequenceDiagram
-    autonumber
-    actor User as 👤 User
-    participant UI as 📱 Streamlit App (app.py)
-    participant Agent as 🤖 CrewAI Agent (news_agents.py)
-    participant Tool as 🌐 SerperDevTool API
-    participant LLM as 🧠 Gemini LLM
-
-    User->>UI: Enters news topic (e.g. "Saudi Arabia") & clicks Search
-    UI->>Agent: Calls get_news(topic)
-    Agent->>Tool: Execute web search for latest news
-    Tool-->>Agent: Returns live web search snippets & URLs
-    Agent->>LLM: Send search context to evaluate & summarize
-    LLM-->>Agent: Returns top 3 structured articles (Headline, Source, Date, Summary, URL)
-    Agent-->>UI: Returns raw markdown string
-    UI->>UI: Parse text with Regex into structured cards
-    UI-->>User: Renders news cards with "Read Full Article →" buttons
 ```
 
 ---
@@ -82,9 +62,10 @@ DailyNewsAgent/
 ├── news_agents.py       # CrewAI agent, search tool, and task workflow definition
 ├── test_backend.py      # CLI script to test backend logic independently
 ├── requirements.txt     # Python package dependencies
+├── WORKFLOW.md          # Complete architecture & workflow specification
 ├── .env.example         # Environment variable template
 ├── .gitignore           # Git ignore rules (protects API keys)
-└── README.md            # Project documentation & workflow diagram
+└── README.md            # Project documentation & overview
 ```
 
 ---
