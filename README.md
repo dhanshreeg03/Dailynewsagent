@@ -14,7 +14,7 @@ Searching for real-time news topics (e.g. *Saudi Arabia*):
 ### 2. Generated News Summaries & Source Cards
 Structured AI-curated news cards complete with source name, publication date, short summary, and direct article link:
 
-![Daily News Agent Results](assets/app_results.png)
+![Daily News Agent Results](assets/news.png)
 
 ---
 
