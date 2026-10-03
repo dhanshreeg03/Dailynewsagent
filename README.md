@@ -18,6 +18,50 @@ Structured AI-curated news cards complete with source name, publication date, sh
 
 ---
 
+## 🔄 System Architecture & Workflow
+
+```mermaid
+flowchart TD
+    A[👤 User Interface / Streamlit app.py] -->|1. Enters Topic & Clicks Search| B[⚡ get_news Topic Handler]
+    B -->|2. Kickoff Async Crew Workflow| C[🤖 CrewAI Manager]
+    
+    subgraph CrewAI Research Execution
+        C -->|3. Assigns Research Task| D[🕵️ News Researcher Agent]
+        D -->|4. Invokes SerperDevTool| E[🌐 Serper Google Search API]
+        E -->|5. Returns Live Web Search Results| D
+        D -->|6. Sends Context to LLM| F[🧠 Google Gemini LLM]
+        F -->|7. Filters 3 Relevant Articles & Summarizes| D
+    end
+
+    D -->|8. Returns Formatted Raw Markdown| B
+    B -->|9. Regex Extraction & Article Parsing| A
+    A -->|10. Renders News Cards & Direct Links| G[📺 Streamlit UI Display]
+```
+
+### Detailed Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor User as 👤 User
+    participant UI as 📱 Streamlit App (app.py)
+    participant Agent as 🤖 CrewAI Agent (news_agents.py)
+    participant Tool as 🌐 SerperDevTool API
+    participant LLM as 🧠 Gemini LLM
+
+    User->>UI: Enters news topic (e.g. "Saudi Arabia") & clicks Search
+    UI->>Agent: Calls get_news(topic)
+    Agent->>Tool: Execute web search for latest news
+    Tool-->>Agent: Returns live web search snippets & URLs
+    Agent->>LLM: Send search context to evaluate & summarize
+    LLM-->>Agent: Returns top 3 structured articles (Headline, Source, Date, Summary, URL)
+    Agent-->>UI: Returns raw markdown string
+    UI->>UI: Parse text with Regex into structured cards
+    UI-->>User: Renders news cards with "Read Full Article →" buttons
+```
+
+---
+
 ## ✨ Features
 
 - 🔎 **Real-time Web Search**: Uses SerperDevTool to query current news from across the web.
@@ -40,7 +84,7 @@ DailyNewsAgent/
 ├── requirements.txt     # Python package dependencies
 ├── .env.example         # Environment variable template
 ├── .gitignore           # Git ignore rules (protects API keys)
-└── README.md            # Project documentation
+└── README.md            # Project documentation & workflow diagram
 ```
 
 ---
